@@ -1,0 +1,86 @@
+{
+  "user": {
+    "username": "",
+    "email": "",
+    "password": "",
+    "poin": 100,
+    "badges": [{ "badgeName": "", "badgeImage": "" }],
+    "bookmark": [
+      { "postId": "", "postTitle": "", "postDescripstion": "", "slug": "" }
+    ],
+    "post": [
+      { "postId": "", "postTitle": "", "postDescripstion": "", "slug": "" }
+    ],
+    "discussions": [
+      { "postId": "", "postTitle": "", "slug": "", "comment": "" }
+    ],
+    "likes": [
+      { "postId": "", "postTitle": "", "postDescripstion": "", "slug": "" }
+    ],
+    "following": [{ "userId": "", "userName": "", "profileImage": "" }],
+    "followers": [{ "userId": "", "userName": "", "profileImage": "" }],
+    "tagsFollowing": [{ "tagName": "", "tagLink": "" }],
+    "role": ["ADMIN", "USER", "MODERATOR"],
+    "bio": "",
+    "provinsi": "",
+    "profileImage": "",
+    "kotaKabupaten": "",
+    "language": "",
+    "skills": "",
+    "userProvider": "",
+    "userProviderToken": "",
+    "status": ["VERIFIED", "PENDING", "SUSPENSE"],
+    "projects": [
+      {
+        "projectName": "",
+        "projectDescription": "",
+        "coverImage": "",
+        "projectLink": "",
+        "projectCategory": ""
+      }
+    ]
+  },
+  "post": {
+    "title": "",
+    "content": "",
+    "subforum": "",
+    "canonical": "",
+    "tags": [
+      {
+        "tagName": "",
+        "tagLink": "",
+        "tagImage": "",
+        "tagCount": "",
+        "tagCategory": ""
+      }
+    ],
+    "author": {
+      "username": "",
+      "imageProfile": "",
+      "bio": "",
+      "github": "",
+      "blog": "",
+      "website": ""
+    },
+    "readTime": 3,
+    "slug": "",
+    "count": {
+      "likes": 100,
+      "bookmark": 100,
+      "comments": 100,
+      "pageViews": 0
+    },
+    "comments": [
+      {
+        "postId": "",
+        "comment": "",
+        "replyTo": ""
+      }
+    ]
+  },
+  "badges": {},
+  "projects": {},
+  "comments": {},
+  "postTag": {},
+  "poin": { "userId": "", "action": "", "poin": 0 }
+}
