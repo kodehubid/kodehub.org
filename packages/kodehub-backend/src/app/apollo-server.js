@@ -53,7 +53,8 @@ const apolloServerConfig = () => {
   return {
     typeDefs,
     resolvers,
-    introspection,
+    introspection: introspection || process.env.GRAPHQL_INSTROPECTION,
+    playground: process.env.GRAPHQL_PLAYGROUND || false,
     context: createContext,
     validationRules: [depthLimit(process.env.GRAPHQL_DEPTH_LIMIT || 7)]
   };

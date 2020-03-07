@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next build && next start"
+    "start": "next build && next start",
+    "test": "echo \"no test specified\" && exit 0"
   },
   "dependencies": {
     "@emotion/core": "^10.0.28",

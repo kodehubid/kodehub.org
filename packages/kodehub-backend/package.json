@@ -3,16 +3,19 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/app/server.js",
+  "engines": {
+    "node": ">=10.0.0 <=12.16.1"
+  },
   "scripts": {
     "dev": "nodemon --watch src --exec babel-node src/app/server.js",
-    "start": "jest && npm run build && npm run serve",
-    "test": "jest --runInBand --watch --coverage --verbose",
+    "start": "node dist/app/server.js",
+    "start:prod": "cross-env NODE_ENV=production node dist/app/server.js",
+    "test": "jest --runInBand --coverage --verbose",
     "start:test": "cross-env NODE_ENV=test MONGODB_DEBUG=true npm run test:watch",
     "lint": "eslint '**/*.js' --ignore-pattern node_modules/",
     "fix:lint": "eslint '**/*.js' --ignore-pattern node_modules/ --fix",
     "seed": "babel-node seeds/index.js",
-    "build": "cross-env NODE_ENV=production babel src -d dist",
-    "serve": "cross-env NODE_ENV=production node dist/app/server.js"
+    "build": "cross-env NODE_ENV=production babel src -d dist"
   },
   "keywords": [],
   "author": "",
@@ -36,7 +39,8 @@
     "morgan": "^1.9.1",
     "password-validator": "^5.0.3",
     "remove": "^0.1.5",
-    "uuid": "^3.4.0"
+    "uuid": "^3.4.0",
+    "axios": "^0.19.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -44,7 +48,6 @@
     "@babel/node": "^7.8.4",
     "@babel/plugin-proposal-optional-chaining": "^7.8.3",
     "@babel/preset-env": "^7.8.7",
-    "axios": "^0.19.2",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^25.1.0",
     "cross-env": "^7.0.0",
@@ -66,7 +69,7 @@
       "html"
     ],
     "moduleNameMapper": {
-      "^mongoose$": "<rootDir>/node_modules/mongoose"
+      "^mongoose$": "<rootDir>/../../node_modules/mongoose"
     }
   }
 }
