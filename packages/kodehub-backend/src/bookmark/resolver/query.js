@@ -1,6 +1,12 @@
+// @flow
+'use strict';
 import utils from '../../shared/utils';
 
-export const bookmarksResolver = async (parent, args, { models }) => {
+export const bookmarksResolver = async (
+  parent?: Object,
+  args: Object,
+  ctx: { models: Object }
+) => {
   const { limit = 25, offset = 0, orderBy = '-createdAt', cursor } = args;
   const cursorOptions = cursor
     ? {
@@ -10,32 +16,41 @@ export const bookmarksResolver = async (parent, args, { models }) => {
     }
     : {};
 
-  const findOptions = { limit: limit + 1, sort: orderBy };
+  const findOptions: { limit: number, sort: string, skip?: number } = {
+    limit: limit + 1,
+    sort: orderBy
+  };
   if (offset) {
     findOptions.skip = offset;
   }
 
-  const list = await models.Bookmark.find(
+  const list = await ctx.models.Bookmark.find(
     { ...cursorOptions },
     null,
     findOptions
   ).populate('createdBy');
 
   const listLength = list.length;
-  const hasNextPage = listLength > limit;
-  const edges = hasNextPage ? list.slice(0, -1) : list;
+  const hasNextPage: boolean = listLength > limit;
+  const edges: Array<Object> = hasNextPage ? list.slice(0, -1) : list;
   const endCursor = edges[edges.length - 1]?.createdAt || 0;
 
-  const pageInfo = {
-    hasNextPage,
+  const pageInfo: { hasNextPage: boolean, endCursor: string } = {
+    hasNextPage: hasNextPage,
     endCursor: utils.toCursorHash(String(endCursor))
   };
 
   return { edges, pageInfo };
 };
 
-export const bookmarkResolver = async (parent, { id }, { models }) => {
-  const bookmark = await models.Bookmark.findById(id).populate('createdBy');
+export const bookmarkResolver = async (
+  parent?: Object,
+  args: { id: string },
+  ctx: { models: Object }
+) => {
+  const bookmark: Object = await ctx.models.Bookmark.findById(args.id).populate(
+    'createdBy'
+  );
 
   return bookmark;
 };

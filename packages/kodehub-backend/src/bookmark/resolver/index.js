@@ -1,3 +1,4 @@
+// @flow
 'use strict';
 import { combineResolvers } from 'graphql-resolvers';
 import { bookmarksResolver, bookmarkResolver } from './query';
@@ -28,18 +29,22 @@ const bookmarkResolvers = {
     )
   },
   BookmarkConnection: {
-    totalCount: (parent, args, { models }) => {
-      return models.Bookmark.countDocuments();
+    totalCount: (parent?: Object, args?: Object, ctx: { models: Object }) => {
+      return ctx.models.Bookmark.countDocuments();
     }
   },
   Bookmark: {
-    id: parent => {
+    id: (parent: Object) => {
       return parent._id.toString();
     },
-    createdBy: async (parent, args, { models }) => {
+    createdBy: async (
+      parent: { createdBy: string | Object },
+      args?: Object,
+      ctx: { models: Object }
+    ) => {
       const isObjectId = utils.objectIdValid.test(parent.createdBy);
       return isObjectId
-        ? await models.User.findById(parent.createdBy)
+        ? await ctx.models.User.findById(parent.createdBy)
         : parent.createdBy;
     }
   }

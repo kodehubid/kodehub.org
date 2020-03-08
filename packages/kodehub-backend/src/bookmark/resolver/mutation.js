@@ -1,25 +1,37 @@
-import pubsub, { EVENTS } from '../../shared/subscriptions';
+// @flow
 
 export const createBookmarkResolver = async (
-  parent,
-  { input },
-  { models, user }
+  parent?: Object,
+  args: { input: Object },
+  ctx: { models: Object, user: Object }
 ) => {
-  const newBookmark = { ...input, createdBy: user.id };
-  const bookmark = await models.Bookmark.create(newBookmark);
+  const newBookmark = { ...args.input, createdBy: ctx.user.id };
+  const bookmark: Object = await ctx.models.Bookmark.create(newBookmark);
 
   return bookmark;
 };
 
-export const deleteBookmarkResolver = (parent, { id }, { models }) => {
-  let status = false;
-  const deleted = models.Bookmark.deleteOne({ _id: id });
+export const deleteBookmarkResolver = (
+  parent?: Object,
+  args: { id: String },
+  ctx: { models: Object }
+) => {
+  let status: boolean = false;
+  const deleted = ctx.models.Bookmark.deleteOne({ _id: args.id });
   if (deleted) {
     status = true;
   }
-  return { id, status };
+  return { id: args.id, status };
 };
 
-export const updateBookmarkResolver = (parent, { updates, id }, { models }) => {
-  return models.Bookmark.findOneAndUpdate({ _id: id }, updates);
+export const updateBookmarkResolver = (
+  parent?: Object,
+  args: { id: String, updates: Object },
+  ctx: { models: Object }
+) => {
+  const updatedBookmark: Object = ctx.models.Bookmark.findOneAndUpdate(
+    { _id: args.id },
+    args.updates
+  );
+  return updatedBookmark;
 };

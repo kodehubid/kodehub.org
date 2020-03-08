@@ -1,0 +1,15 @@
+[ignore]
+.*/node_modules/.*
+.*/coverage
+.*/dist
+.*/seeds
+.*/tests
+.*/src/app
+.*/__test__
+
+[include]
+
+[libs]
+
+[options]
+esproposal.optional_chaining=enable

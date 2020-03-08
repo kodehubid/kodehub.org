@@ -1,5 +1,3 @@
-import pubsub, { EVENTS } from '../../shared/subscriptions';
-
 export const createBookmarkResolver = async (
   parent,
   { input },

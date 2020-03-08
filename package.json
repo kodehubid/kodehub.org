@@ -8,13 +8,17 @@
     "dev": "npx lerna run dev",
     "build": "npx lerna run build",
     "test": "npx lerna run test",
-    "start": "npx lerna run start"
+    "start": "npx lerna run start",
+    "kodehub-backend": "yarn workspace kodehub-backend dev",
+    "kodehub-frontend": "yarn workspace kodehub-frontend dev",
+    "kodehub": "concurrently --kill-others-on-fail \"yarn kodehub-backend\"  \"yarn kodehub-frontend\""
   },
   "devDependencies": {
     "babel-plugin-module-resolver": "^4.0.0",
     "lerna": "^3.20.2"
   },
   "dependencies": {
-    "@emotion/styled": "^10.0.27"
+    "@emotion/styled": "^10.0.27",
+    "concurrently": "^5.1.0"
   }
 }
