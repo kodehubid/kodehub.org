@@ -36,6 +36,7 @@ Set `npmClient` `"yarn"` and turn `useWorkspaces` on.
 
 - To install all dependencies on the packages use `yarn install` or `npx lerna bootstrap`
 - Start development use `yarn dev`
+- Start development with logging use `yarn kodehub`
 - Start local production use `yarn start`
 - Testing use `yarn test`
 
