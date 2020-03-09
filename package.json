@@ -10,7 +10,9 @@
     "test": "npx lerna run test",
     "start": "npx lerna run start",
     "kodehub-backend": "yarn workspace kodehub-backend dev",
+    "kodehub-backend-test": "yarn workspace kodehub-backend test",
     "kodehub-frontend": "yarn workspace kodehub-frontend dev",
+    "kodehub-frontend-test": "yarn workspace kodehub-frontend test",
     "kodehub": "concurrently --kill-others-on-fail \"yarn kodehub-backend\"  \"yarn kodehub-frontend\""
   },
   "devDependencies": {

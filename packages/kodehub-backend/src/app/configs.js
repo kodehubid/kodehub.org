@@ -1,14 +1,25 @@
 const dev = process.env.NODE_ENV === 'development';
 
+const defaultBaseUrl = `http://localhost:${ process.env.PORT || 8080 }`;
+/**
+ * app
+ * general configs for the whole apps
+ */
 const app = {
   port: process.env.PORT || 8080,
-  baseUrl: dev
-    ? `http://localhost:${ process.env.PORT || 8080 }`
-    : process.env.BASE_URL
+  baseUrl: dev ? defaultBaseUrl : process.env.BASE_URL
 };
+/**
+ * mongodb
+ * configs to set some parameter before connect
+ */
 const mongodb = {
   debug: process.env.MONGODB_DEBUG || false
 };
+/**
+ * express
+ * configs to set some middlewares parameter
+ */
 const express = {
   requestLimit: {
     // limit http request to the server
@@ -16,6 +27,10 @@ const express = {
     max: 900 // limit each IP to 900 requests per windowMs (60 request / minute)
   }
 };
+/**
+ * githubOAuth
+ * configs to be authenticated to github apis
+ */
 const githubOAuth = {
   githubClient: process.env.GITHUB_KEY,
   githubSecret: process.env.GITHUB_SECRET,
@@ -26,11 +41,12 @@ const githubOAuth = {
   allow_signup: true
 };
 
+// register sub config
 const configs = {
   app,
   mongodb,
   express,
   githubOAuth
 };
-
+// one point to exports all config
 export default configs;

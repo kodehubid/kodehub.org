@@ -23,6 +23,11 @@ const userSchema = new mongoose.Schema({
     minlength: 8,
     maxlength: 40
   },
+  fullName: {
+    type: String,
+    required: true,
+    maxlength: 100
+  },
   role: {
     type: String,
     required: true,
@@ -78,6 +83,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     maxlength: 100
   },
+  userGithubId: {
+    type: String,
+    maxlength: 100
+  },
   userProviderToken: {
     type: String,
     maxlength: 255
@@ -119,6 +128,9 @@ userSchema.methods.validatePassword = async function validatePassword(
 };
 
 userSchema.pre('save', async function saveUser(next) {
+  if (!this.fullName) {
+    this.fullName = this.username;
+  }
   // set hash for password
   if (this.isModified('password')) {
     this.password = await generateUserPasswordHash(this.password);
