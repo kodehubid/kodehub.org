@@ -18,7 +18,7 @@
     "emotion-theming": "^10.0.27",
     "express": "^4.17.1",
     "graphql": "^14.6.0",
-    "i": "^0.3.6",
+    "i": "^0.3.7",
     "mobx": "^5.15.4",
     "next": "9.2.2",
     "next-compose-plugins": "^2.2.0",
